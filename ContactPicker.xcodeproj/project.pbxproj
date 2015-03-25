@@ -13,6 +13,26 @@
 		C65E95FE1AC1D7EB005A0634 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C65E95FD1AC1D7EB005A0634 /* Images.xcassets */; };
 		C65E96011AC1D7EB005A0634 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C65E95FF1AC1D7EB005A0634 /* LaunchScreen.xib */; };
 		C65E960D1AC1D7EB005A0634 /* ContactPickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65E960C1AC1D7EB005A0634 /* ContactPickerTests.swift */; };
+		C65E961B1AC1DFB2005A0634 /* AutoCompleteTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C65E96181AC1DFB2005A0634 /* AutoCompleteTextField.m */; };
+		C65E961C1AC1DFB2005A0634 /* ContactSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C65E961A1AC1DFB2005A0634 /* ContactSelectionView.m */; };
+		C67B66441AC2FC0C001F1FAE /* TextEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B66431AC2FC0C001F1FAE /* TextEntryTableViewCell.swift */; };
+		C67B66561AC30611001F1FAE /* Alex.png in Resources */ = {isa = PBXBuildFile; fileRef = C67B66461AC30611001F1FAE /* Alex.png */; };
+		C67B66571AC30611001F1FAE /* Arjun.png in Resources */ = {isa = PBXBuildFile; fileRef = C67B66471AC30611001F1FAE /* Arjun.png */; };
+		C67B66581AC30611001F1FAE /* Claire.png in Resources */ = {isa = PBXBuildFile; fileRef = C67B66481AC30611001F1FAE /* Claire.png */; };
+		C67B66591AC30611001F1FAE /* Drew.png in Resources */ = {isa = PBXBuildFile; fileRef = C67B66491AC30611001F1FAE /* Drew.png */; };
+		C67B665A1AC30611001F1FAE /* Isabella.png in Resources */ = {isa = PBXBuildFile; fileRef = C67B664A1AC30611001F1FAE /* Isabella.png */; };
+		C67B665B1AC30611001F1FAE /* Jack.png in Resources */ = {isa = PBXBuildFile; fileRef = C67B664B1AC30611001F1FAE /* Jack.png */; };
+		C67B665C1AC30611001F1FAE /* James.png in Resources */ = {isa = PBXBuildFile; fileRef = C67B664C1AC30611001F1FAE /* James.png */; };
+		C67B665D1AC30611001F1FAE /* John.png in Resources */ = {isa = PBXBuildFile; fileRef = C67B664D1AC30611001F1FAE /* John.png */; };
+		C67B665E1AC30611001F1FAE /* Laurel.png in Resources */ = {isa = PBXBuildFile; fileRef = C67B664E1AC30611001F1FAE /* Laurel.png */; };
+		C67B665F1AC30611001F1FAE /* Mei.png in Resources */ = {isa = PBXBuildFile; fileRef = C67B664F1AC30611001F1FAE /* Mei.png */; };
+		C67B66601AC30611001F1FAE /* Nicole.png in Resources */ = {isa = PBXBuildFile; fileRef = C67B66501AC30611001F1FAE /* Nicole.png */; };
+		C67B66611AC30611001F1FAE /* Oliver.png in Resources */ = {isa = PBXBuildFile; fileRef = C67B66511AC30611001F1FAE /* Oliver.png */; };
+		C67B66621AC30611001F1FAE /* Peggy.png in Resources */ = {isa = PBXBuildFile; fileRef = C67B66521AC30611001F1FAE /* Peggy.png */; };
+		C67B66631AC30611001F1FAE /* Sally.png in Resources */ = {isa = PBXBuildFile; fileRef = C67B66531AC30611001F1FAE /* Sally.png */; };
+		C67B66641AC30611001F1FAE /* Sam.png in Resources */ = {isa = PBXBuildFile; fileRef = C67B66541AC30611001F1FAE /* Sam.png */; };
+		C67B66651AC30611001F1FAE /* Sarah.png in Resources */ = {isa = PBXBuildFile; fileRef = C67B66551AC30611001F1FAE /* Sarah.png */; };
+		C67B66671AC30755001F1FAE /* DirectMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B66661AC30755001F1FAE /* DirectMessageTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,6 +46,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01D06D5084037014B7B7E922 /* libPods-ContactPickerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ContactPickerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		22BECE3F0AF45D347B90585D /* Pods-ContactPickerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContactPickerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ContactPickerTests/Pods-ContactPickerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2C2C63FD26E5FEE14833C0D2 /* libPods-ContactPicker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ContactPicker.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		52C1B9132EFF50E2A7AA163C /* Pods-ContactPicker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContactPicker.release.xcconfig"; path = "Pods/Target Support Files/Pods-ContactPicker/Pods-ContactPicker.release.xcconfig"; sourceTree = "<group>"; };
+		BF32C923D3454EE0B50D1DF8 /* Pods-ContactPickerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContactPickerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ContactPickerTests/Pods-ContactPickerTests.release.xcconfig"; sourceTree = "<group>"; };
 		C65E95F11AC1D7EB005A0634 /* ContactPicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactPicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C65E95F51AC1D7EB005A0634 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C65E95F61AC1D7EB005A0634 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -36,32 +61,61 @@
 		C65E96061AC1D7EB005A0634 /* ContactPickerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactPickerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C65E960B1AC1D7EB005A0634 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C65E960C1AC1D7EB005A0634 /* ContactPickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPickerTests.swift; sourceTree = "<group>"; };
+		C65E96161AC1DFB1005A0634 /* ContactPicker-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ContactPicker-Bridging-Header.h"; sourceTree = "<group>"; };
+		C65E96171AC1DFB2005A0634 /* AutoCompleteTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoCompleteTextField.h; sourceTree = "<group>"; };
+		C65E96181AC1DFB2005A0634 /* AutoCompleteTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoCompleteTextField.m; sourceTree = "<group>"; };
+		C65E96191AC1DFB2005A0634 /* ContactSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactSelectionView.h; sourceTree = "<group>"; };
+		C65E961A1AC1DFB2005A0634 /* ContactSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactSelectionView.m; sourceTree = "<group>"; };
+		C67B66431AC2FC0C001F1FAE /* TextEntryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEntryTableViewCell.swift; sourceTree = "<group>"; };
+		C67B66461AC30611001F1FAE /* Alex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Alex.png; sourceTree = "<group>"; };
+		C67B66471AC30611001F1FAE /* Arjun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Arjun.png; sourceTree = "<group>"; };
+		C67B66481AC30611001F1FAE /* Claire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Claire.png; sourceTree = "<group>"; };
+		C67B66491AC30611001F1FAE /* Drew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Drew.png; sourceTree = "<group>"; };
+		C67B664A1AC30611001F1FAE /* Isabella.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Isabella.png; sourceTree = "<group>"; };
+		C67B664B1AC30611001F1FAE /* Jack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Jack.png; sourceTree = "<group>"; };
+		C67B664C1AC30611001F1FAE /* James.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = James.png; sourceTree = "<group>"; };
+		C67B664D1AC30611001F1FAE /* John.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = John.png; sourceTree = "<group>"; };
+		C67B664E1AC30611001F1FAE /* Laurel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Laurel.png; sourceTree = "<group>"; };
+		C67B664F1AC30611001F1FAE /* Mei.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mei.png; sourceTree = "<group>"; };
+		C67B66501AC30611001F1FAE /* Nicole.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Nicole.png; sourceTree = "<group>"; };
+		C67B66511AC30611001F1FAE /* Oliver.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Oliver.png; sourceTree = "<group>"; };
+		C67B66521AC30611001F1FAE /* Peggy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Peggy.png; sourceTree = "<group>"; };
+		C67B66531AC30611001F1FAE /* Sally.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sally.png; sourceTree = "<group>"; };
+		C67B66541AC30611001F1FAE /* Sam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sam.png; sourceTree = "<group>"; };
+		C67B66551AC30611001F1FAE /* Sarah.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sarah.png; sourceTree = "<group>"; };
+		C67B66661AC30755001F1FAE /* DirectMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectMessageTableViewCell.swift; sourceTree = "<group>"; };
+		F3006FA8371FEFD0CDCEEAB9 /* Pods-ContactPicker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContactPicker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ContactPicker/Pods-ContactPicker.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFrameworksBuildPhase section */
-		C65E95EE1AC1D7EB005A0634 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C65E96031AC1D7EB005A0634 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
 /* Begin PBXGroup section */
+		080B62CBC83CC6E13B0561B4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2C2C63FD26E5FEE14833C0D2 /* libPods-ContactPicker.a */,
+				01D06D5084037014B7B7E922 /* libPods-ContactPickerTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1C9CD1BEAE95B43F93A0AA01 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F3006FA8371FEFD0CDCEEAB9 /* Pods-ContactPicker.debug.xcconfig */,
+				52C1B9132EFF50E2A7AA163C /* Pods-ContactPicker.release.xcconfig */,
+				22BECE3F0AF45D347B90585D /* Pods-ContactPickerTests.debug.xcconfig */,
+				BF32C923D3454EE0B50D1DF8 /* Pods-ContactPickerTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		C65E95E81AC1D7EB005A0634 = {
 			isa = PBXGroup;
 			children = (
 				C65E95F31AC1D7EB005A0634 /* ContactPicker */,
 				C65E96091AC1D7EB005A0634 /* ContactPickerTests */,
 				C65E95F21AC1D7EB005A0634 /* Products */,
+				1C9CD1BEAE95B43F93A0AA01 /* Pods */,
+				080B62CBC83CC6E13B0561B4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,12 +131,20 @@
 		C65E95F31AC1D7EB005A0634 /* ContactPicker */ = {
 			isa = PBXGroup;
 			children = (
+				C65E96171AC1DFB2005A0634 /* AutoCompleteTextField.h */,
+				C65E96181AC1DFB2005A0634 /* AutoCompleteTextField.m */,
+				C65E96191AC1DFB2005A0634 /* ContactSelectionView.h */,
+				C65E961A1AC1DFB2005A0634 /* ContactSelectionView.m */,
 				C65E95F61AC1D7EB005A0634 /* AppDelegate.swift */,
 				C65E95F81AC1D7EB005A0634 /* ViewController.swift */,
+				C67B66661AC30755001F1FAE /* DirectMessageTableViewCell.swift */,
 				C65E95FA1AC1D7EB005A0634 /* Main.storyboard */,
+				C67B66431AC2FC0C001F1FAE /* TextEntryTableViewCell.swift */,
 				C65E95FD1AC1D7EB005A0634 /* Images.xcassets */,
 				C65E95FF1AC1D7EB005A0634 /* LaunchScreen.xib */,
+				C67B66451AC30605001F1FAE /* Images */,
 				C65E95F41AC1D7EB005A0634 /* Supporting Files */,
+				C65E96161AC1DFB1005A0634 /* ContactPicker-Bridging-Header.h */,
 			);
 			path = ContactPicker;
 			sourceTree = "<group>";
@@ -112,6 +174,29 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		C67B66451AC30605001F1FAE /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				C67B66461AC30611001F1FAE /* Alex.png */,
+				C67B66471AC30611001F1FAE /* Arjun.png */,
+				C67B66481AC30611001F1FAE /* Claire.png */,
+				C67B66491AC30611001F1FAE /* Drew.png */,
+				C67B664A1AC30611001F1FAE /* Isabella.png */,
+				C67B664B1AC30611001F1FAE /* Jack.png */,
+				C67B664C1AC30611001F1FAE /* James.png */,
+				C67B664D1AC30611001F1FAE /* John.png */,
+				C67B664E1AC30611001F1FAE /* Laurel.png */,
+				C67B664F1AC30611001F1FAE /* Mei.png */,
+				C67B66501AC30611001F1FAE /* Nicole.png */,
+				C67B66511AC30611001F1FAE /* Oliver.png */,
+				C67B66521AC30611001F1FAE /* Peggy.png */,
+				C67B66531AC30611001F1FAE /* Sally.png */,
+				C67B66541AC30611001F1FAE /* Sam.png */,
+				C67B66551AC30611001F1FAE /* Sarah.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -120,7 +205,6 @@
 			buildConfigurationList = C65E96101AC1D7EB005A0634 /* Build configuration list for PBXNativeTarget "ContactPicker" */;
 			buildPhases = (
 				C65E95ED1AC1D7EB005A0634 /* Sources */,
-				C65E95EE1AC1D7EB005A0634 /* Frameworks */,
 				C65E95EF1AC1D7EB005A0634 /* Resources */,
 			);
 			buildRules = (
@@ -137,7 +221,6 @@
 			buildConfigurationList = C65E96131AC1D7EB005A0634 /* Build configuration list for PBXNativeTarget "ContactPickerTests" */;
 			buildPhases = (
 				C65E96021AC1D7EB005A0634 /* Sources */,
-				C65E96031AC1D7EB005A0634 /* Frameworks */,
 				C65E96041AC1D7EB005A0634 /* Resources */,
 			);
 			buildRules = (
@@ -192,8 +275,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C67B665F1AC30611001F1FAE /* Mei.png in Resources */,
+				C67B665C1AC30611001F1FAE /* James.png in Resources */,
+				C67B665B1AC30611001F1FAE /* Jack.png in Resources */,
+				C67B66641AC30611001F1FAE /* Sam.png in Resources */,
 				C65E95FC1AC1D7EB005A0634 /* Main.storyboard in Resources */,
+				C67B66611AC30611001F1FAE /* Oliver.png in Resources */,
+				C67B66581AC30611001F1FAE /* Claire.png in Resources */,
+				C67B66561AC30611001F1FAE /* Alex.png in Resources */,
+				C67B66591AC30611001F1FAE /* Drew.png in Resources */,
+				C67B66621AC30611001F1FAE /* Peggy.png in Resources */,
+				C67B665A1AC30611001F1FAE /* Isabella.png in Resources */,
 				C65E96011AC1D7EB005A0634 /* LaunchScreen.xib in Resources */,
+				C67B66651AC30611001F1FAE /* Sarah.png in Resources */,
+				C67B66571AC30611001F1FAE /* Arjun.png in Resources */,
+				C67B66631AC30611001F1FAE /* Sally.png in Resources */,
+				C67B665D1AC30611001F1FAE /* John.png in Resources */,
+				C67B66601AC30611001F1FAE /* Nicole.png in Resources */,
+				C67B665E1AC30611001F1FAE /* Laurel.png in Resources */,
 				C65E95FE1AC1D7EB005A0634 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,7 +311,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C67B66441AC2FC0C001F1FAE /* TextEntryTableViewCell.swift in Sources */,
 				C65E95F91AC1D7EB005A0634 /* ViewController.swift in Sources */,
+				C67B66671AC30755001F1FAE /* DirectMessageTableViewCell.swift in Sources */,
+				C65E961C1AC1DFB2005A0634 /* ContactSelectionView.m in Sources */,
+				C65E961B1AC1DFB2005A0634 /* AutoCompleteTextField.m in Sources */,
 				C65E95F71AC1D7EB005A0634 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,26 +439,34 @@
 		};
 		C65E96111AC1D7EB005A0634 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3006FA8371FEFD0CDCEEAB9 /* Pods-ContactPicker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ContactPicker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ContactPicker/ContactPicker-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		C65E96121AC1D7EB005A0634 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52C1B9132EFF50E2A7AA163C /* Pods-ContactPicker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ContactPicker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ContactPicker/ContactPicker-Bridging-Header.h";
 			};
 			name = Release;
 		};
 		C65E96141AC1D7EB005A0634 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 22BECE3F0AF45D347B90585D /* Pods-ContactPickerTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -375,6 +486,7 @@
 		};
 		C65E96151AC1D7EB005A0634 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BF32C923D3454EE0B50D1DF8 /* Pods-ContactPickerTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -407,6 +519,7 @@
 				C65E96121AC1D7EB005A0634 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C65E96131AC1D7EB005A0634 /* Build configuration list for PBXNativeTarget "ContactPickerTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +528,7 @@
 				C65E96151AC1D7EB005A0634 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
