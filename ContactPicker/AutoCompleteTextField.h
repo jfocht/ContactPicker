@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-
 @protocol AutoCompleteTextFieldDelegate
 - (void)textFieldDictationRecordingDidEnd:(UITextField*)textField;
 - (void)textField:(UITextField*)textField insertDictationResult:(NSArray *)dictationResult;

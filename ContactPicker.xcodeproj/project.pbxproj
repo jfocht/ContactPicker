@@ -33,6 +33,7 @@
 		C67B66641AC30611001F1FAE /* Sam.png in Resources */ = {isa = PBXBuildFile; fileRef = C67B66541AC30611001F1FAE /* Sam.png */; };
 		C67B66651AC30611001F1FAE /* Sarah.png in Resources */ = {isa = PBXBuildFile; fileRef = C67B66551AC30611001F1FAE /* Sarah.png */; };
 		C67B66671AC30755001F1FAE /* DirectMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B66661AC30755001F1FAE /* DirectMessageTableViewCell.swift */; };
+		C67B66691AC441E1001F1FAE /* DeselectedRecipientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B66681AC441E1001F1FAE /* DeselectedRecipientCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		C67B66541AC30611001F1FAE /* Sam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sam.png; sourceTree = "<group>"; };
 		C67B66551AC30611001F1FAE /* Sarah.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sarah.png; sourceTree = "<group>"; };
 		C67B66661AC30755001F1FAE /* DirectMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectMessageTableViewCell.swift; sourceTree = "<group>"; };
+		C67B66681AC441E1001F1FAE /* DeselectedRecipientCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeselectedRecipientCell.swift; sourceTree = "<group>"; };
 		F3006FA8371FEFD0CDCEEAB9 /* Pods-ContactPicker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContactPicker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ContactPicker/Pods-ContactPicker.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -137,6 +139,7 @@
 				C65E961A1AC1DFB2005A0634 /* ContactSelectionView.m */,
 				C65E95F61AC1D7EB005A0634 /* AppDelegate.swift */,
 				C65E95F81AC1D7EB005A0634 /* ViewController.swift */,
+				C67B66681AC441E1001F1FAE /* DeselectedRecipientCell.swift */,
 				C67B66661AC30755001F1FAE /* DirectMessageTableViewCell.swift */,
 				C65E95FA1AC1D7EB005A0634 /* Main.storyboard */,
 				C67B66431AC2FC0C001F1FAE /* TextEntryTableViewCell.swift */,
@@ -315,6 +318,7 @@
 				C65E95F91AC1D7EB005A0634 /* ViewController.swift in Sources */,
 				C67B66671AC30755001F1FAE /* DirectMessageTableViewCell.swift in Sources */,
 				C65E961C1AC1DFB2005A0634 /* ContactSelectionView.m in Sources */,
+				C67B66691AC441E1001F1FAE /* DeselectedRecipientCell.swift in Sources */,
 				C65E961B1AC1DFB2005A0634 /* AutoCompleteTextField.m in Sources */,
 				C65E95F71AC1D7EB005A0634 /* AppDelegate.swift in Sources */,
 			);
@@ -392,7 +396,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -429,7 +433,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

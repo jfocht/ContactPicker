@@ -14,55 +14,91 @@ private let RecipientRow = 1
 let People = ["Alex", "Arjun", "Claire", "Drew", "Isabella", "Jack", "James", "John",
     "Laurel", "Mei", "Nicole", "Oliver", "Peggy", "Sally", "Sam", "Sarah"]
 
-class ViewController: UITableViewController {
+// TODO update bottom content inset for keyboard
+// TODO iOS 7
+
+class ViewController: UIViewController {
+    @IBOutlet weak var fieldTableView: UITableView!
+    @IBOutlet weak var completionTableView: UITableView!
+    @IBOutlet weak var fieldTableViewHeightConstraint: NSLayoutConstraint!
+    
+    private var editingRecipients = false
     private var filteredPeople = People
-    private var items = [String]()
+    private var items: [String] = [String]() {
+        didSet {
+            self.deselectedRecipientCell?.names = items
+        }
+    }
     private var selectionView: ContactSelectionView?
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+    private var deselectedRecipientCell: DeselectedRecipientCell?
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let center = NSNotificationCenter.defaultCenter()
+        center.addObserver(self, selector: Selector("anyTextFieldDidBeginEditing:"), name: UITextFieldTextDidBeginEditingNotification, object: nil)
+        center.addObserver(self, selector: Selector("keyboardWasShown:"), name: UIKeyboardDidShowNotification, object: nil)
+        center.addObserver(self, selector: Selector("keyboardWillBeHidden:"), name: UIKeyboardWillHideNotification, object: nil)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func keyboardWasShown(notification: NSNotification) {
+        if let info = notification.userInfo {
+            let value = info[UIKeyboardFrameEndUserInfoKey] as? NSValue
+            if let kbRect = value?.CGRectValue() {
+                let kbSize = kbRect.size
+                let contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0)
+                self.completionTableView?.contentInset = contentInsets
+                self.completionTableView?.scrollIndicatorInsets = contentInsets
+            }
+        }
     }
-
+    
+    func keyboardWillBeHidden(notification: NSNotification) {
+        let contentInsets = UIEdgeInsetsZero
+        self.completionTableView?.contentInset = contentInsets
+        self.completionTableView?.scrollIndicatorInsets = contentInsets
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        let center = NSNotificationCenter.defaultCenter()
+        center.removeObserver(self)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        self.fieldTableView?.contentInset = UIEdgeInsetsZero
+    }
+    
+    func anyTextFieldDidBeginEditing(notification: NSNotification) {
+        if let field = notification.object as? UITextField {
+            if field != self.selectionView?.ingredientField {
+                self.editingRecipients = false
+                self.fieldTableView?.reloadRowsAtIndexPaths([NSIndexPath(forRow: RecipientRow, inSection: 0)], withRowAnimation: .None)
+            }
+        }
+    }
 }
-
-/**
-
-x Add name to table view when selected
-x Auto completion
-x Add check marks to names
-* Scroll "To" to top
-
-*/
 
 
 /// MARK: - UITableViewDataSource
 
-extension ViewController {
+extension ViewController: UITableViewDataSource {
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2 + self.filteredPeople.count
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tableView == self.completionTableView {
+            return self.filteredPeople.count
+        } else {
+            return 2
+        }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // TODO scroll the text view to the top of the table view
-        if indexPath.row == SubjectRow {
-            let cell = tableView.dequeueReusableCellWithIdentifier("subjectCell") as TextEntryTableViewCell
-            cell.textField.delegate = self
-            return cell
-        } else if indexPath.row == RecipientRow {
-            let cell = tableView.dequeueReusableCellWithIdentifier("toCell") as ContactSelectionView
-            self.selectionView = cell
-            return cell
-        } else {
+        if tableView == self.completionTableView {
             let cell = tableView.dequeueReusableCellWithIdentifier("personTableViewCell") as DirectMessageTableViewCell
-            let person = self.filteredPeople[indexPath.row - 2]
+            let person = self.filteredPeople[indexPath.row]
             cell.avatarView.image = UIImage(named: "\(person).png")
             cell.nameLabel.text = person
             if contains(self.items, person) {
@@ -71,50 +107,75 @@ extension ViewController {
                 cell.accessoryType = .None
             }
             return cell
-            
+        } else {
+            if indexPath.row == SubjectRow {
+                let cell = tableView.dequeueReusableCellWithIdentifier("subjectCell") as TextEntryTableViewCell
+                cell.textField.delegate = self
+                return cell
+            } else if self.editingRecipients {
+                let cell = tableView.dequeueReusableCellWithIdentifier("toCell") as ContactSelectionView
+                cell.selectionDataSource = self
+                cell.selectionDelegate = self
+                self.selectionView = cell
+                self.selectionView?.ingredientField.becomeFirstResponder()
+                return cell
+            } else {
+                self.selectionView = nil
+                let cell = tableView.dequeueReusableCellWithIdentifier("toCellDeselected") as DeselectedRecipientCell
+                self.deselectedRecipientCell = cell
+                cell.names = self.items
+                return cell
+            }
         }
     }
 }
 
 /// MARK: - UITableViewDelegate
 
-extension ViewController {
+extension ViewController: UITableViewDelegate {
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == SubjectRow {
-            let cell = tableView.cellForRowAtIndexPath(indexPath) as TextEntryTableViewCell
-            cell.textField.delegate = self
-            cell.textField.becomeFirstResponder()
-            // TODO collapse the recipient field
-        } else if indexPath.row == RecipientRow {
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if cell == self.selectionView {
             self.selectionView?.ingredientField.becomeFirstResponder()
-        } else {
+        }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if tableView == self.completionTableView {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
-            let selection =  self.filteredPeople[indexPath.row - 2]
+            let selection =  self.filteredPeople[indexPath.row]
             let cell = tableView.cellForRowAtIndexPath(indexPath)
             if contains(self.items, selection) {
                 self.items = self.items.filter { $0 != selection }
             } else {
                 self.items.append(selection)
             }
-            self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            self.completionTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
             self.selectionView?.reloadData()
-            self.tableView.beginUpdates()
-            self.tableView.endUpdates()
+            self.completionTableView.beginUpdates()
+            self.completionTableView.endUpdates()
+            if self.selectionView == nil {
+                let path = NSIndexPath(forRow: RecipientRow, inSection: 0)
+                self.fieldTableView.reloadRowsAtIndexPaths([path], withRowAnimation: .None)
+            }
+        } else if indexPath.row == SubjectRow {
+            self.editingRecipients = false
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as TextEntryTableViewCell
+            cell.textField.delegate = self
+            cell.textField.becomeFirstResponder()
+            self.updatePeople(People)
+            self.completionTableView?.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: .Top, animated: true)
+        } else if indexPath.row == RecipientRow {
+            self.editingRecipients = true
+            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
         }
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let height: CGFloat = 45;
-        if indexPath.row == RecipientRow {
-            return CGFloat((self.selectionView?.lineCount ?? 1) - 1) * 26.5 + height
-        } else {
-            return height
-        }
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 45
     }
     
 }
-
 
 /// MARK: - UITextFieldDelegate
 
@@ -130,11 +191,11 @@ extension ViewController: UITextFieldDelegate {
 /// MARK: - ContactSelectionViewDelegate
 
 extension ViewController: ContactSelectionDataSource {
-
+    
     func numberOfItemsSelectedInContactSelectionView(view: AnyObject) -> UInt {
         return UInt(self.items.count)
     }
-
+    
     func contactSelectionView(view: AnyObject, itemAtIndex index: UInt) -> String {
         return self.items[Int(index)]
     }
@@ -146,11 +207,14 @@ extension ViewController: ContactSelectionDelegate {
     
     func contactSelectionView(view: AnyObject, insertSelection selection: String) {
         if !contains(self.items, selection) {
-            NSLog("append selection")
             self.items.append(selection)
             if let index = find(self.filteredPeople, selection) {
-                let paths = [NSIndexPath(forRow: index + 2, inSection: 0)]
-                self.tableView.reloadRowsAtIndexPaths(paths, withRowAnimation: .None)
+                let paths = [NSIndexPath(forRow: index, inSection: 0)]
+                self.completionTableView.reloadRowsAtIndexPaths(paths, withRowAnimation: .None)
+            }
+            if self.selectionView == nil {
+                let path = NSIndexPath(forRow: RecipientRow, inSection: 0)
+                self.fieldTableView.reloadRowsAtIndexPaths([path], withRowAnimation: .None)
             }
         }
         self.updatePeople(People)
@@ -159,37 +223,45 @@ extension ViewController: ContactSelectionDelegate {
     func updatePeople(people: [String]) {
         let previousPeople = self.filteredPeople
         self.filteredPeople = people
-        self.tableView.beginUpdates()
+        self.completionTableView.beginUpdates()
         let reloadCount = min(previousPeople.count, self.filteredPeople.count)
         let needsUpdate =  Array(0..<reloadCount).filter { previousPeople[$0] != self.filteredPeople[$0] }
-        let reloadPaths = needsUpdate.map { NSIndexPath(forRow: $0 + 2, inSection: 0) }
-        self.tableView.reloadRowsAtIndexPaths(reloadPaths, withRowAnimation: .None)
+        let reloadPaths = needsUpdate.map { NSIndexPath(forRow: $0, inSection: 0) }
+        self.completionTableView.reloadRowsAtIndexPaths(reloadPaths, withRowAnimation: .None)
         if previousPeople.count > self.filteredPeople.count {
-            let deletedPaths = (self.filteredPeople.count..<previousPeople.count).map { NSIndexPath(forRow: $0 + 2, inSection: 0) }
-            self.tableView.deleteRowsAtIndexPaths(deletedPaths, withRowAnimation: .None)
+            let deletedPaths = (self.filteredPeople.count..<previousPeople.count).map { NSIndexPath(forRow: $0, inSection: 0) }
+            self.completionTableView.deleteRowsAtIndexPaths(deletedPaths, withRowAnimation: .None)
         }
         if self.filteredPeople.count > previousPeople.count {
-            let insertedPaths = (previousPeople.count..<self.filteredPeople.count).map { NSIndexPath(forRow: $0 + 2, inSection: 0) }
-            self.tableView.insertRowsAtIndexPaths(insertedPaths, withRowAnimation: .None)
+            let insertedPaths = (previousPeople.count..<self.filteredPeople.count).map { NSIndexPath(forRow: $0, inSection: 0) }
+            self.completionTableView.insertRowsAtIndexPaths(insertedPaths, withRowAnimation: .None)
         }
-        self.tableView.endUpdates()
+        self.completionTableView.endUpdates()
     }
-
+    
     func contactSelectionView(view: AnyObject, removeSelection selection: String) {
         self.items = self.items.filter { $0 != selection }
         if let index = find(self.filteredPeople, selection) {
-            let paths = [NSIndexPath(forRow: index + 2, inSection: 0)]
-            self.tableView.reloadRowsAtIndexPaths(paths, withRowAnimation: .None)
+            let paths = [NSIndexPath(forRow: index, inSection: 0)]
+            self.completionTableView.reloadRowsAtIndexPaths(paths, withRowAnimation: .None)
+        }
+        if self.selectionView == nil {
+            let path = NSIndexPath(forRow: RecipientRow, inSection: 0)
+            self.fieldTableView.reloadRowsAtIndexPaths([path], withRowAnimation: .None)
         }
     }
-
+    
     func contactSelectionView(view: AnyObject, insertDictationResult dictationResult: [AnyObject]) {
         // not supported
     }
-
+    
     func contactSelectionView(contactSelectionView: AnyObject!, didChangeLineCount count: UInt) {
-        self.tableView.beginUpdates()
-        self.tableView.endUpdates()
+        self.fieldTableView.beginUpdates()
+        self.fieldTableView.endUpdates()
+        
+        if let tableView = self.fieldTableView {
+            tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0), atScrollPosition: .Bottom, animated: false)
+        }
     }
     
     func contactSelectionView(contactSelectionView: AnyObject!, didChangeText text: NSString) {
@@ -203,5 +275,5 @@ extension ViewController: ContactSelectionDelegate {
             self.updatePeople(newPeople)
         }
     }
-
+    
 }

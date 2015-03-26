@@ -11,7 +11,7 @@
 static const int MIN_TEXT_WIDTH = 75.0f;
 static const int COMMA_WIDTH = 5.0f;
 static const int LEFT_OFFSET = 10.0f;
-static const int SMALL_TEXT_EXTRA_MARGIN = 1.0f;
+static const int SMALL_TEXT_EXTRA_MARGIN = 5.0f;
 static const int HORIZONTAL_MARGIN = 5.0f;
 static const int LEFT_TEXT_X = LEFT_OFFSET + HORIZONTAL_MARGIN;
 static const int LINE_HEIGHT = 26.5f;
@@ -21,11 +21,6 @@ static const int CORNER_RADIUS = 6.0f;
 #define TEXT_COLOR [UIColor blackColor]
 #define PLACEHOLDER_TEXT @""
 
-// TODO add top padding to view
-// TODO embed in another view for padding
-// TODO fix selected item button color
-// TODO slim down ingredients view when keyboard displays
-
 typedef enum DeleteButtonStatus : NSUInteger {
     DeleteButtonStatusNoAction,
     DeleteButtonStatusSelected,
@@ -34,6 +29,7 @@ typedef enum DeleteButtonStatus : NSUInteger {
 
 @interface ContactSelectionView ()
 
+@property() BOOL needsScroll;
 @property() NSUInteger scrollViewTop;
 @property() BOOL enableAutoCompletion;
 @property(nonatomic) UILabel* toLabel;
@@ -96,8 +92,8 @@ typedef enum DeleteButtonStatus : NSUInteger {
     } else {
         self.ingredientField.text = @"\u200B";
     }
-    [self.selectionDelegate contactSelectionView:self didChangeText:@""
-     ];
+    [self.selectionDelegate contactSelectionView:self didChangeText:@""];
+    self.needsScroll = YES;
     [self setNeedsLayout];
 }
 
@@ -114,7 +110,7 @@ typedef enum DeleteButtonStatus : NSUInteger {
     [self.toLabel sizeToFit];
     int searchYPos = yPos + (LINE_HEIGHT - self.toLabel.frame.size.height) / 2;
     self.toLabel.frame = CGRectMake(xPos, searchYPos, self.toLabel.frame.size.width, self.toLabel.frame.size.height);
-    xPos += self.toLabel.frame.size.width;
+    xPos += self.toLabel.frame.size.width + 2;
 
     long nextButtonIndex = -1;
     for (int i = 0; i < selectionCount; i++) {
@@ -196,8 +192,15 @@ typedef enum DeleteButtonStatus : NSUInteger {
     if (self.lineCount != newLineCount) {
         _lineCount = newLineCount;
         [self.selectionDelegate contactSelectionView:self didChangeLineCount:newLineCount];
+        self.needsScroll = true;
     }
     [super layoutSubviews];
+    
+    if (self.needsScroll) {
+        self.needsScroll = NO;
+        CGFloat offsetY = self.ingredientField.frame.origin.y;
+        [self.scrollView setContentOffset:CGPointMake(0, offsetY) animated:true];
+    }
     
     [UIView setAnimationsEnabled:YES];
 }
@@ -215,7 +218,7 @@ typedef enum DeleteButtonStatus : NSUInteger {
             if (field.selected) {
                 [self.selectionDelegate contactSelectionView:self removeSelection:field.titleLabel.text];
                 [self setNeedsLayout];
-                field.selected = false;
+                field.selected = NO;
                 self.ingredientField.hideCaret = NO;
                 return DeleteButtonStatusDeleted;
             }
@@ -228,6 +231,7 @@ typedef enum DeleteButtonStatus : NSUInteger {
         if ([view isKindOfClass:[UIButton class]]) {
             UIButton* field = (UIButton*)view;
             field.selected = YES;
+            [self.scrollView scrollRectToVisible:field.frame animated:true];
             return DeleteButtonStatusSelected;
         }
     }
@@ -297,11 +301,11 @@ typedef enum DeleteButtonStatus : NSUInteger {
     if (selected) {
         self.ingredientField.text = @"\u200B";
         self.enableAutoCompletion = NO;
-        // notify the delegate
+        [self.ingredientField becomeFirstResponder];
+        self.ingredientField.hideCaret = YES;
+        [self.scrollView scrollRectToVisible:sender.frame animated:true];
     }
-    sender.selected = YES;
-    [self.ingredientField becomeFirstResponder];
-    self.ingredientField.hideCaret = YES;
+    sender.selected = selected;
 }
 
 #pragma mark -
@@ -334,6 +338,7 @@ typedef enum DeleteButtonStatus : NSUInteger {
         }
         self.ingredientField.hideCaret = (deleteStatus == DeleteButtonStatusSelected);
     } else {
+        [self.scrollView setContentOffset:CGPointMake(0, self.ingredientField.frame.origin.y) animated:true];
         if ([self selectedButton]) {
             [self deleteButton];
         }
@@ -352,6 +357,7 @@ typedef enum DeleteButtonStatus : NSUInteger {
         [self.selectionDelegate contactSelectionView:self insertSelection:text];
         self.ingredientField.text = @"\u200B";
         self.enableAutoCompletion = NO;
+        self.needsScroll = YES;
         [self setNeedsLayout];
         [self layoutIfNeeded];
     }
